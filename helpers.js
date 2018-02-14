@@ -32,7 +32,7 @@ const icon = function(iconName) {
       break;
     case "snow":
     case "sleet":
-      return "<i class='fas fa-snowflake></i>";
+      return "<i class='fas fa-snowflake'></i>";
       break;
     default:
       return "<i class='fas fa-cloud'></i>";
