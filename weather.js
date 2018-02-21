@@ -13,7 +13,7 @@
 // NOTES AND HINTS
 
 // All of the work of grabbing data from the Dark Sky API is already done
-// for you! Your task is to take that data, transform it into HTML, and 
+// for you! Your task is to take that data, transform it into HTML, and
 // insert it into the document. All of your work begins on line 47!
 
 // Each day of the forecast should use HTML markup similar to:
@@ -37,14 +37,26 @@
 // .append() appends a string (containing HTML) to a jQuery DOM object
 
 let handleWeatherResponse = function(response) {
-  // leave these two lines alone; they allow for the inspection of 
+  // leave these two lines alone; they allow for the inspection of
   // the response object in the browser console (try typing "response"
   // in the Chrome JavaScript console!)
   console.log(response)
   window.response = response
 
   // **** your code starts here - don't modify anything else. you will be sad.
-
+  $(".forecast").empty();
+  $("#current-conditions-icon").html(icon(response.currently.icon));
+  $("#current-conditions-text").html(response.currently.summary);
+  for(let i=0;i<6;i++) {
+    let html = '<div class="col">';
+    html = html + '<h3>' + icon(response.daily.data[i].icon) + '</h3>';
+    html = html + '<h4>' + response.daily.data[i].temperatureHigh + '|' + response.daily.data[i].temperatureLow + '</h4>';
+    html = html + '<h5>' + response.daily.data[i].summary + '</h5>';
+    html = html + '</div>';
+    $(".forecast").append(html);
+  }
+  $(".current").fadeIn(2000);
+  $(".forecast").fadeIn(3000);
   // *** your code ends here -- really.
 };
 
